@@ -1,3 +1,6 @@
+My version of MissionPlanner which contains an extra window for controlling and viewing a Scanning Sonar on a boat.
+I try to stay as close as possible to the original, just add my code so it stays compatible.
+
 # MissionPlanner
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ArduPilot/MissionPlanner?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build status](https://ci.appveyor.com/api/projects/status/2c5tbxr2wvcguihp?svg=true)](https://ci.appveyor.com/project/meee1/missionplanner)
