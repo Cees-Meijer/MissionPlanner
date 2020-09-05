@@ -5065,5 +5065,10 @@ namespace MissionPlanner.GCSViews
                 tabStatus.AutoScrollPosition.Y);
             e.Graphics.DrawImageUnscaled(bmp, 0, 0);
         }
+
+        private void modifyandSetSpeed_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

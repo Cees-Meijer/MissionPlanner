@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 public partial class MAVLink
 {
-    public const string MAVLINK_BUILD_DATE = "Sat Jun 13 2020";
+    public const string MAVLINK_BUILD_DATE = "Sat Sep 05 2020";
     public const string MAVLINK_WIRE_PROTOCOL_VERSION = "2.0";
     public const int MAVLINK_MAX_PAYLOAD_LEN = 255;
 
@@ -247,6 +247,7 @@ public partial class MAVLink
         new message_info(350, "DEBUG_FLOAT_ARRAY", 232, 20, 252, typeof( mavlink_debug_float_array_t )),
         new message_info(365, "STATUSTEXT_LONG", 36, 255, 255, typeof( mavlink_statustext_long_t )),
         new message_info(375, "ACTUATOR_OUTPUT_STATUS", 251, 140, 140, typeof( mavlink_actuator_output_status_t )),
+        new message_info(1000, "SCANNING_SONAR", 238, 14, 14, typeof( mavlink_scanning_sonar_t )),
         new message_info(9000, "WHEEL_DISTANCE", 113, 137, 137, typeof( mavlink_wheel_distance_t )),
         new message_info(10001, "UAVIONIX_ADSB_OUT_CFG", 209, 20, 20, typeof( mavlink_uavionix_adsb_out_cfg_t )),
         new message_info(10002, "UAVIONIX_ADSB_OUT_DYNAMIC", 186, 41, 41, typeof( mavlink_uavionix_adsb_out_dynamic_t )),
@@ -510,6 +511,7 @@ public partial class MAVLink
         DEBUG_FLOAT_ARRAY = 350,
         STATUSTEXT_LONG = 365,
         ACTUATOR_OUTPUT_STATUS = 375,
+        SCANNING_SONAR = 1000,
         WHEEL_DISTANCE = 9000,
         UAVIONIX_ADSB_OUT_CFG = 10001,
         UAVIONIX_ADSB_OUT_DYNAMIC = 10002,
@@ -16009,6 +16011,48 @@ public partial class MAVLink
         [Description("Servo / motor output array values. Zero values indicate unused channels.")]
         [MarshalAs(UnmanagedType.ByValArray,SizeConst=32)]
 		public float[] actuator;
+    
+    };
+
+
+    [StructLayout(LayoutKind.Sequential,Pack=1,Size=14)]
+    ///<summary> Scanning sonar. </summary>
+    public struct mavlink_scanning_sonar_t
+    {
+        public mavlink_scanning_sonar_t(uint time_boot_ms,ushort range,ushort angle,short roll,short pitch,short yaw) 
+        {
+              this.time_boot_ms = time_boot_ms;
+              this.range = range;
+              this.angle = angle;
+              this.roll = roll;
+              this.pitch = pitch;
+              this.yaw = yaw;
+            
+        }
+        /// <summary>Timestamp (time since system boot).  [ms] </summary>
+        [Units("[ms]")]
+        [Description("Timestamp (time since system boot).")]
+        public  uint time_boot_ms;
+            /// <summary>Measured range  [mm] </summary>
+        [Units("[mm]")]
+        [Description("Measured range")]
+        public  ushort range;
+            /// <summary>Angle  [0.1 degrees] </summary>
+        [Units("[0.1 degrees]")]
+        [Description("Angle")]
+        public  ushort angle;
+            /// <summary>Roll  [0.1 deg] </summary>
+        [Units("[0.1 deg]")]
+        [Description("Roll")]
+        public  short roll;
+            /// <summary>Pitch.  [0.1 deg] </summary>
+        [Units("[0.1 deg]")]
+        [Description("Pitch.")]
+        public  short pitch;
+            /// <summary>Heading.  [0.1 deg] </summary>
+        [Units("[0.1 deg]")]
+        [Description("Heading.")]
+        public  short yaw;
     
     };
 

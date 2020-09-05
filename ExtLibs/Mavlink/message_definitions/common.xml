@@ -5209,6 +5209,15 @@
       <field type="uint32_t" name="active" display="bitmask">Active outputs</field>
       <field type="float[32]" name="actuator">Servo / motor output array values. Zero values indicate unused channels.</field>
     </message>
+	 <message id="1000" name="SCANNING_SONAR">
+      <description>Scanning sonar.</description>
+      <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
+      <field type="uint16_t" name="range" units="mm">Measured range</field>
+	  <field type="uint16_t" name="angle" units="0.1 degrees">Angle</field>
+      <field type="int16_t" name="roll" units="0.1 deg">Roll</field>
+      <field type="int16_t" name="pitch" units="0.1 deg">Pitch.</field>
+	  <field type="int16_t" name="yaw" units="0.1 deg">Heading.</field>
+    </message>
     <!-- Rover specific messages -->
     <message id="9000" name="WHEEL_DISTANCE">
       <description>Cumulative distance traveled for each reported wheel.</description>

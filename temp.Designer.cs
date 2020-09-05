@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(temp));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.but_sonarview = new MissionPlanner.Controls.MyButton();
             this.but_proximity = new MissionPlanner.Controls.MyButton();
             this.but_followswarm = new MissionPlanner.Controls.MyButton();
             this.label16 = new System.Windows.Forms.Label();
@@ -141,6 +142,7 @@
             this.label53 = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.controlSensorsStatus1 = new MissionPlanner.Controls.ControlSensorsStatus();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -149,6 +151,7 @@
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.but_sonarview, 0, 29);
             this.tableLayoutPanel1.Controls.Add(this.but_proximity, 2, 27);
             this.tableLayoutPanel1.Controls.Add(this.but_followswarm, 2, 28);
             this.tableLayoutPanel1.Controls.Add(this.label16, 3, 25);
@@ -260,7 +263,15 @@
             this.tableLayoutPanel1.Controls.Add(this.label53, 3, 26);
             this.tableLayoutPanel1.Controls.Add(this.label54, 3, 27);
             this.tableLayoutPanel1.Controls.Add(this.label55, 3, 28);
+            this.tableLayoutPanel1.Controls.Add(this.label12, 1, 29);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
+            // but_sonarview
+            // 
+            resources.ApplyResources(this.but_sonarview, "but_sonarview");
+            this.but_sonarview.Name = "but_sonarview";
+            this.but_sonarview.UseVisualStyleBackColor = true;
+            this.but_sonarview.Click += new System.EventHandler(this.but_sonarview_Click);
             // 
             // but_proximity
             // 
@@ -929,6 +940,11 @@
             resources.ApplyResources(this.label55, "label55");
             this.label55.Name = "label55";
             // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
             // controlSensorsStatus1
             // 
             resources.ApplyResources(this.controlSensorsStatus1, "controlSensorsStatus1");
@@ -1065,5 +1081,7 @@
         private System.Windows.Forms.Label label54;
         private System.Windows.Forms.Label label55;
         private Controls.ControlSensorsStatus controlSensorsStatus1;
+        private Controls.MyButton but_sonarview;
+        private System.Windows.Forms.Label label12;
     }
 }

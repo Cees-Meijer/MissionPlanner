@@ -1248,5 +1248,10 @@ namespace MissionPlanner
                 .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
                 .ToArray();
         }
+
+        private void but_sonarview_Click(object sender, EventArgs e)
+        {
+            new SonarView(MainV2.comPort).Show();
+        }
     }
 }

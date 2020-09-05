@@ -389,6 +389,12 @@
     </Compile>
     <Compile Include="Controls\Icon\File.cs" />
     <Compile Include="Controls\Icon\Zoom.cs" />
+    <Compile Include="Controls\SonarView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\SonarView.Designer.cs">
+      <DependentUpon>SonarView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Status.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -674,6 +680,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\GMAPCache.resx">
       <DependentUpon>GMAPCache.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SonarView.resx">
+      <DependentUpon>SonarView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Status.resx">
       <DependentUpon>Status.cs</DependentUpon>
