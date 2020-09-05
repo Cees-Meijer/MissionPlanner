@@ -73,7 +73,8 @@
             // 
             // zedGraphControl1
             // 
-            this.zedGraphControl1.Location = new System.Drawing.Point(268, 16);
+            this.zedGraphControl1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.zedGraphControl1.Location = new System.Drawing.Point(294, 0);
             this.zedGraphControl1.Name = "zedGraphControl1";
             this.zedGraphControl1.ScrollGrace = 0D;
             this.zedGraphControl1.ScrollMaxX = 0D;
@@ -82,14 +83,14 @@
             this.zedGraphControl1.ScrollMinX = 0D;
             this.zedGraphControl1.ScrollMinY = 0D;
             this.zedGraphControl1.ScrollMinY2 = 0D;
-            this.zedGraphControl1.Size = new System.Drawing.Size(344, 293);
+            this.zedGraphControl1.Size = new System.Drawing.Size(344, 352);
             this.zedGraphControl1.TabIndex = 3;
             // 
             // SonarView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(628, 351);
+            this.ClientSize = new System.Drawing.Size(638, 352);
             this.Controls.Add(this.zedGraphControl1);
             this.Controls.Add(this.but_init);
             this.Controls.Add(this.but_start);
