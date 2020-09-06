@@ -46,10 +46,23 @@ namespace MissionPlanner.Controls
         private void but_start_Click(object sender, EventArgs e)
         {
             GraphPane myPane = zedGraphControl1.GraphPane;
-            var line = new LineItem("ScanPoints", new RollingPointPairList(20), Color.Red, SymbolType.Diamond);
+            var line = new LineItem("ScanPoints", new RollingPointPairList(20), Color.White, SymbolType.Diamond);
+            var sonar = new LineItem("Sonar", new PointPairList(), Color.Red, SymbolType.Circle);
+            sonar.AddPoint(0, 0);
             line.Line.IsVisible = false;
+            myPane.Title.Text = "ST-1000 Sonar";
             myPane.CurveList.Add(line);
+            myPane.CurveList.Add(sonar);
             myPane.YAxis.Scale.IsReverse=true;
+            myPane.YAxis.Title.Text = "Depth (m)";
+            myPane.YAxis.Title.Text = "Distance (m)";
+            myPane.XAxis.Scale.Max = 2; myPane.XAxis.Scale.Min = -2;
+            myPane.YAxis.Scale.Max = 5; myPane.YAxis.Scale.Min = 0;
+            myPane.XAxis.MajorGrid.Color = Color.DimGray;
+            myPane.YAxis.MajorGrid.Color = Color.DimGray;
+            myPane.XAxis.MajorGrid.IsVisible = true;
+            myPane.YAxis.MajorGrid.IsVisible = true;
+
 
             var subscribeToPacket =
               mav.SubscribeToPacketType(MAVLink.MAVLINK_MSG_ID.SCANNING_SONAR,
@@ -57,16 +70,27 @@ namespace MissionPlanner.Controls
                   {
 
                       MAVLink.mavlink_scanning_sonar_t S = (MAVLink.mavlink_scanning_sonar_t)message.data;
-                      data_txt = $"Data:{S.time_boot_ms},{S.range / 1000.0},{S.angle/10.0},{S.roll/10.0},{S.pitch/10.0},{S.yaw/10.0}";
+                      data_txt = $"{S.time_boot_ms},{S.range / 1000.0},{S.angle / 10.0},{S.roll / 10.0},{S.pitch / 10.0},{S.yaw / 10.0}";
 
                       data_txt += Environment.NewLine;
+
                      
-                       textBox1.Invoke(new Action(() => textBox1.AppendText(data_txt)));
                       double deg2rad = Math.PI / 180;
-                      double Y = S.range/1000.0 * Math.Cos((double)(S.angle/10.0)*deg2rad);
-                      double X = S.range/1000.0 * Math.Sin((double)(S.angle / 10.0) * deg2rad);
+                      double Y = S.range / 1000.0 * Math.Cos((double)(S.angle / 10.0) * deg2rad);
+                      double X = S.range / 1000.0 * Math.Sin((double)(S.angle / 10.0) * deg2rad);
                       line.AddPoint(X, Y);
-                      zedGraphControl1.AxisChange();
+
+                      double Total = 0;
+                      for (int I = 0; I < line.NPts; I++) {Total += line.Points[I].Y; }
+                      double AvgY = Total / line.NPts;
+                      try
+                      {
+                          textBox1.Invoke(new Action(() => textBox1.AppendText(data_txt)));
+                          textBoxDepth.Invoke(new Action(() => textBoxDepth.Text = AvgY.ToString("F1")));
+                          textBoxRoll.Invoke(new Action(() => textBoxRoll.Text = (S.roll / 10.0).ToString("F1")));
+                      }
+                      catch(ObjectDisposedException ) { }
+                      //zedGraphControl1.AxisChange();
                       zedGraphControl1.Invalidate();
                       return true;
                   });
@@ -98,6 +122,11 @@ namespace MissionPlanner.Controls
             {
                 CustomMessageBox.Show(Strings.ErrorNoResponce, Strings.ERROR);
             }
+        }
+
+        private void splitContainer2_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
