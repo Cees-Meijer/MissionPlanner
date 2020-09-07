@@ -4389,5 +4389,11 @@ namespace MissionPlanner
                 }
             }
         }
+
+      
+        private void SONARToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+          new SonarView(MainV2.comPort).Show();
+        }
     }
 }
